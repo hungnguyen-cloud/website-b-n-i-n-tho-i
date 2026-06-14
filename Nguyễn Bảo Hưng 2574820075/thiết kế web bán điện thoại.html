@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Phone Store Pro</title>
+<style>
+    *{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+footer{
+    background:#1f1f1f;
+    color:white;
+    padding:40px 30px;
+    margin-top:40px;
+    width:100%;
+    display:block;
+}
+
+.footer-container{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:30px;
+}
+
+.footer-logo{
+    min-width:250px;
+}
+
+.footer-col{
+    min-width:150px;
+}
+
+.footer-col h3{
+    color:#ffd400;
+    margin-bottom:15px;
+}
+
+.footer-col p{
+    margin:8px 0;
+}
+
+.social{
+    display:flex;
+    gap:10px;
+}
+
+.social a{
+    text-decoration:none;
+    color:white;
+    background:#333;
+    padding:10px 15px;
+    border-radius:8px;
+}
+
+.social a:hover{
+    background:#ffd400;
+    color:black;
+}
+
+.copyright{
+    text-align:center;
+    margin-top:25px;
+    padding-top:15px;
+    border-top:1px solid #444;
+}
+.social{
+display:flex;
+gap:15px;
+margin-top:10px;
+}
+
+.social a{
+text-decoration:none;
+color:white;
+padding:10px 15px;
+border-radius:10px;
+background:#333;
+transition:.3s;
+}
+
+.social a:hover{
+background:#ffd400;
+color:black;
+}
+
+.copyright{
+text-align:center;
+margin-top:30px;
+padding-top:20px;
+border-top:1px solid #444;
+color:#aaa;
+}
+    button{
+padding:8px 12px;
+margin:4px;
+cursor:pointer;
+transition:0.3s;
+}
+
+button:hover{
+transform:scale(1.05);
+opacity:0.9;
+}
+body{font-family:Arial;margin:0;background:#f5f5f5}
+header{background:#ffd400;padding:15px;position:sticky;top:0}
+.search{width:60%;padding:10px}
+.filters{padding:15px;background:#fff}
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:15px;padding:20px}
+.card{background:#fff;padding:15px;border-radius:10px;box-shadow:0 2px 5px #ccc}
+button{padding:8px 12px;margin:4px;cursor:pointer}
+#popup{display:none;position:fixed;inset:0;background:rgba(0,0,0,.7)}
+#box{background:#fff;width:500px;margin:80px auto;padding:20px}
+
+</style>
+</head>
+<body>
+<header>
+<img src="images/logo.jpg"
+style="
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+">
+<h1> hưng's phone</h1>
+<input id="search" class="search" placeholder="Tìm điện thoại..." onkeyup="searchPhone()">
+</header>
+<div class="filters">
+<button onclick="filterPrice('all')">Tất cả</button>
+<button onclick="filterPrice('low')">Dưới 10 triệu</button>
+<button onclick="filterPrice('mid')">10-20 triệu</button>
+<button onclick="filterPrice('high')">Trên 20 triệu</button>
+</div>
+<div class="products" id="products">
+
+<div class="card" data-price="5200000">
+<h3>Samsung Galaxy A15 5g</h3>
+<img src="images/samsung galaxy a15 5g.jpg..webp"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 4,299,000 VNĐ</p>
+<button onclick="showSpec('Model 1','50MP','8GB','128GB','mediatekg99','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Samsung Galaxy A15 5g')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="5400000">
+<h3>Honor Magic 8 pro</h3>
+<img src="images/honormagic8 pro.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 5,400,000 VNĐ</p>
+<button onclick="showSpec('Model 2','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Honor Magic 8 pro')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="5600000">
+<h3>iphone 14 </h3>
+<img src="images/iphone 14.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 5,600,000 VNĐ</p>
+<button onclick="showSpec('Model 3','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('iphone 14 ')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="5800000">
+<h3>iphone 15</h3>
+<img src="images/iphone 15.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 5,800,000 VNĐ</p>
+<button onclick="showSpec('Model 4','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('iphone 15 ')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="6000000">
+<h3>iphone 17 </h3>
+<img src="images/iphone 17.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 6,000,000 VNĐ</p>
+<button onclick="showSpec('Model 5','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('iphone 17')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="6200000">
+<h3>Red Magic 10 pro</h3>
+<img src="images/redmagic10pro.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 6,200,000 VNĐ</p>
+<button onclick="showSpec('Model 6','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Red Magic 10 pro')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="6400000">
+<h3>Red Magic 11 pro</h3>
+<img src="images/RedMagic11Pro.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 6,400,000 VNĐ</p>
+<button onclick="showSpec('Model 7','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Red Magic 11 pro')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="6600000">
+<h3>Redmi Note 13 5g</h3>
+<img src="images/redmi note 13 5g.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 6,600,000 VNĐ</p>
+<button onclick="showSpec('Model 8','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Redmi Note 13 5g')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="6800000">
+<h3>Redmi Note 14</h3>
+<img src="images/redmi note 14.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 6,800,000 VNĐ</p>
+<button onclick="showSpec('Model 9','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Redmi Note 14 ')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="7000000">
+<h3>Vivo X200 Ultra</h3>
+<img src="images/vivox200ultra.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 7,000,000 VNĐ</p>
+<button onclick="showSpec('Model 10','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Vivo X200 Ultra')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="7200000">
+<h3>Samsung Galaxy a35 5g</h3>
+<img src="images/samsung galaxy a35 5g.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 7,200,000 VNĐ</p>
+<button onclick="showSpec('Model 11','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Samsung Galaxy a35 5g')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="7400000">
+<h3>Samsung Galaxy S24 Fe</h3>
+<img src="images/samsung galaxy s24 fe.webp"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 7,400,000 VNĐ</p>
+<button onclick="showSpec('Model 12','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Samsung Galaxy S24 Fe')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="7600000">
+<h3>Samsung Galaxy S26 Ultra</h3>
+<img src="images/samsung-galaxy-s26-ultra.png"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 7,600,000 VNĐ</p>
+<button onclick="showSpec('Model 13','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Samsung Galaxy S26 Ultra')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="7800000">
+<h3>Iqoo Z10 Turbo</h3>
+<img src="images/vivo-iqoo-z10-turbo-v2452a-3.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 7,800,000 VNĐ</p>
+<button onclick="showSpec('Model 14','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Iqoo Z10 Turbo')">
+Mua ngay
+</button>
+</div>
+
+<div class="card" data-price="8000000">
+<h3>Vivo X300 Ultra</h3>
+<img src="images/vivox300ultra.jpg"
+width="200"
+     height="200"
+     style="object-fit:contain;">
+<p>Giá: 8,000,000 VNĐ</p>
+<button onclick="showSpec('Model 15','50MP','8GB','256GB','Snapdragon','5000mAh')">Xem thông số</button>
+<button onclick="openOrder('Vivo X300 Ultra')">
+Mua ngay
+</button>
+</div>
+
+</div>
+
+<div id="popup">
+<div id="box">
+<h2 id="name"></h2>
+<p id="cam"></p>
+<p id="ram"></p>
+<p id="rom"></p>
+<p id="chip"></p>
+<p id="pin"></p>
+<button onclick="closePop()">Đóng</button>
+</div>
+</div>
+<script>
+    function openOrder(product){
+
+document.getElementById("orderPage").style.display="block";
+
+document.getElementById("productName").innerText =
+"Sản phẩm: " + product;
+
+}
+
+function closeOrder(){
+
+document.getElementById("orderPage").style.display="none";
+
+}
+
+function confirmOrder(){
+
+let name=document.getElementById("fullName").value;
+let phone=document.getElementById("phone").value;
+let email=document.getElementById("email").value;
+let address=document.getElementById("address").value;
+
+if(name==="" || phone==="" || email==="" || address===""){
+alert("Vui lòng nhập đầy đủ thông tin!");
+return;
+}
+
+alert(
+"Đặt hàng thành công!\n\n" +
+"Họ tên: "+name+
+"\nSĐT: "+phone+
+"\nEmail: "+email+
+"\nĐịa chỉ: "+address
+);
+
+document.getElementById("orderPage").style.display="none";
+
+}
+function searchPhone(){
+let v=document.getElementById('search').value.toLowerCase();
+document.querySelectorAll('.card').forEach(c=>{
+c.style.display=c.innerText.toLowerCase().includes(v)?'block':'none';
+});
+}
+
+function filterPrice(t){
+document.querySelectorAll('.card').forEach(c=>{
+let p=parseInt(c.dataset.price);
+if(t==='all') c.style.display='block';
+if(t==='low') c.style.display=p<10000000?'block':'none';
+if(t==='mid') c.style.display=(p>=10000000&&p<=20000000)?'block':'none';
+if(t==='high') c.style.display=p>20000000?'block':'none';
+});
+}
+
+function showSpec(n,c,rm,ro,ch,p){
+document.getElementById("popup").style.display='block';
+document.getElementById("name").innerText=n;
+document.getElementById("cam").innerText='Camera: '+c;
+document.getElementById("ram").innerText='RAM: '+rm;
+document.getElementById("rom").innerText='Bộ nhớ: '+ro;
+document.getElementById("chip").innerText='Chip: '+ch;
+document.getElementById("pin").innerText='Pin: '+p;
+}
+function closePop(){popup.style.display='none';}
+</script>
+<div id="orderPage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+z-index:9999;
+overflow:auto;
+">
+
+<div style="
+max-width:600px;
+margin:30px auto;
+padding:30px;
+background:white;
+">
+
+<h1>Đặt hàng</h1>
+
+<h3 id="productName"></h3>
+
+<label>Họ và tên</label><br>
+<input id="fullName" type="text" style="width:100%;padding:10px;"><br><br>
+
+<label>Số điện thoại</label><br>
+<input id="phone" type="tel" style="width:100%;padding:10px;"><br><br>
+
+<label>Email</label><br>
+<input id="email" type="email" style="width:100%;padding:10px;"><br><br>
+
+<label>Địa chỉ nhận hàng</label><br>
+<textarea id="address"
+style="width:100%;height:100px;padding:10px;"></textarea><br><br>
+
+<button onclick="confirmOrder()">
+Xác nhận mua hàng
+</button>
+
+<button onclick="closeOrder()">
+Quay lại
+</button>
+
+</div>
+</div>
+<footer>
+
+<div class="footer-container">
+
+<div class="footer-logo">
+
+<img src="images/logo.jpg"
+style="
+width:100px;
+height:100px;
+border-radius:50%;
+object-fit:cover;
+">
+
+<h2>PHONE STORE</h2>
+
+<p>
+Chuyên điện thoại chính hãng,
+giá tốt mỗi ngày
+</p>
+
+</div>
+
+<div class="footer-col">
+<h3>Thông tin</h3>
+<a href="#">Giới thiệu</a><br><br>
+<a href="#">Tuyển dụng</a><br><br>
+<a href="#">Liên hệ</a>
+</div>
+
+<div class="footer-col">
+<h3>Chính sách</h3>
+<p>Bảo hành</p>
+<p>Đổi trả</p>
+<p>Giao hàng</p>
+</div>
+
+<div class="footer-col">
+<h3>Hỗ trợ</h3>
+<p>📞 1900 1234</p>
+<p>📧 support@phonestore.vn</p>
+<p>🕒 8:00 - 22:00</p>
+</div>
+
+<div class="footer-col">
+<h3>Kết nối</h3>
+
+<div class="social">
+
+<a href="https://www.facebook.com/" target="_blank">
+Facebook
+</a>
+
+<a href="https://www.tiktok.com/" target="_blank">
+TikTok
+</a>
+
+<a href="https://www.youtube.com/" target="_blank">
+YouTube
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="copyright">
+© 2026 PHONE STORE | Đồng Hành Với Bạn Là Vinh Dự Của Chúng Tôi!
+</div>
+
+</footer>
+</body>
+</html>
